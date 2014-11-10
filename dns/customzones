@@ -1,0 +1,9 @@
+zone "dev.nicgrayson.com" {
+  type master;
+  file "/data/db.dev.nicgrayson.com";
+};
+
+zone "local.nicgrayson.com" {
+  type master;
+  file "/data/db.local.nicgrayson.com";
+};

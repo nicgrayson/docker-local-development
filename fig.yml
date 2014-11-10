@@ -1,0 +1,25 @@
+dns:
+  image: nicgrayson/boot2docker-dns:latest
+  volumes:
+    - dns:/data
+  ports:
+    - "53:53"
+    - "53:53/udp"
+
+lb:
+  image: dockerfile/haproxy:latest
+  dns: 172.17.42.1
+  volumes:
+    - haproxy:/haproxy-override
+  ports:
+    - "80:80"
+  links:
+    - dns
+
+api:
+  image: nicgrayson/example-api:latest
+  dns: 172.17.42.1
+  ports:
+    - "4567:4567"
+  links:
+    - lb
